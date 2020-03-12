@@ -561,6 +561,62 @@ class ClientV3
     }
 
 
+    /**
+     * Returns all customer attributes.
+     *
+     * @return mixed Resource|string resource object or XML string if useXml is true
+     */
+    public static function getCustomerAttributes()
+    {
+        $response = self::connection()->get(self::$api_path . '/customers/attributes');
+        return self::mapCollection('CustomerAttribute', $response->data);
+    }
+    
+    /**
+     * Returns data for a specific customer attribute.
+     *
+     * @param int $id
+     * @return mixed Resource|string resource object or XML string if useXml is true
+     */
+    public static function getCustomerAttribute($id)
+    {
+        return self::getResource('/customers/attributes/' . $id);
+    }
+    
+    /**
+     * Creates a customer attribute.
+     *
+     * @param mixed $object object or XML string to create
+     * @return mixed
+     */
+    public static function createCustomerAttribute($object)
+    {
+        return self::createResource('/customers/attributes', $object);
+    }
+    
+    /**
+     * Updates the given customer attribute.
+     *
+     * @param int $id
+     * @param mixed $object object or XML string to create
+     * @return mixed
+     */
+    public static function updateCustomerAttribute($id, $object)
+    {
+        return self::updateResource('/customers/attributes/' . $id, $object);
+    }
+    
+    /**
+     * Delete the given customer attribute.
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public static function deleteCustomerAttribute($id)
+    {
+        return self::deleteResource('/customers/attributes/' . $id);
+    }
+
 
 
 }
